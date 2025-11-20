@@ -1,4 +1,5 @@
-
+let ajoutBtn = document.querySelector(".ajouterBtn");
+let formContainerAjout = document.querySelector("#formContainerAjout");
 
 function previewImage() {
   const url = document.querySelector("#photoUrl").value;
@@ -19,3 +20,8 @@ function previewImage() {
     preview.innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
   }
 }
+
+ajoutBtn.addEventListener("click", () => {
+    formContainerAjout.classList.remove("hidden");
+    formContainerAjout.classList.add("flex");
+  });
