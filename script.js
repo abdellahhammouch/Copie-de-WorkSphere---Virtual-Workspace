@@ -110,6 +110,14 @@ function fillemployee(employee) {
             `;
 }
 
+function filexperiences(experience){
+  experience.forEach((exp) => {
+      const profilContainerDetails = document.querySelector(".profilContainerDetails");
+      const divExp = document.createElement("div");
+      
+    });
+}
+
 
 formContainerAjout.addEventListener("submit", (e) => {
   e.preventDefault();
