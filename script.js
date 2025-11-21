@@ -21,6 +21,14 @@ function previewImage() {
   }
 }
 
+function hideForm() {
+  formContainerAjout.classList.add("hidden");
+  let form = formContainerAjout.querySelector("form");
+  form.reset();
+  document.querySelector("#imagePreview").innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
+  
+}
+
 ajoutBtn.addEventListener("click", () => {
     formContainerAjout.classList.remove("hidden");
     formContainerAjout.classList.add("flex");
