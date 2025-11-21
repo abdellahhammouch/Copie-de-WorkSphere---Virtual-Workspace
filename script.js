@@ -1,5 +1,11 @@
 let ajoutBtn = document.querySelector(".ajouterBtn");
 let formContainerAjout = document.querySelector("#formContainerAjout");
+let annulBtnForm = document.querySelector("#annulBtnForm");
+let addExperienceBtn = document.querySelector("#addExperienceBtn");
+let experienceTemplate = document.querySelector("#experienceTemplate");
+let employesContainer = document.querySelector(".employesContainer");
+let experiencesList = document.querySelector("#experiencesList");
+let details = document.querySelector("#details");
 let employes = [];
 let employe;
 
