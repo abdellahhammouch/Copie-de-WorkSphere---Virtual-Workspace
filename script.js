@@ -54,6 +54,23 @@ function addExperience() {
   experiencesList.append(container);
 }
 
+function filexperiences(experience){
+  experience.forEach((exp) => {
+      const profilContainerDetails = document.querySelector(".profilContainerDetails");
+      const divExp = document.createElement("div");
+      divExp.className = "exp w-full bg-zinc-800 border border-zinc-700 border-l-4 border-l-emerald-500 rounded-xl p-4 mt-4 hover:border-l-emerald-400 hover:shadow-lg";
+      divExp.innerHTML = `
+        <p class="text-lg font-bold text-emerald-500 mb-2">${exp.poste}</p>
+        <p class="text-base text-zinc-400 italic mb-1">${exp.entreprise}</p>
+        <p class="text-sm text-zinc-500">Début: ${exp.debut}</p>
+        <p class="text-sm text-zinc-500 mb-2">Fin: ${exp.fin}</p>
+        <p class="text-sm text-zinc-400 mt-2">${exp.description}</p>
+      `;
+
+      profilContainerDetails.append(divExp);
+    });
+}
+
 function fillemployee(employee) {
   employee.className =
     "employe flex pl-3 gap-x-3 rounded-2xl border-emerald-500 border-2 cursor-pointer hover:bg-zinc-800 transition-all";
