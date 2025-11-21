@@ -43,7 +43,18 @@ function cacherFormulaire() {
 function detailsemploye(employee, experience) {
   employee.addEventListener("click", () => {
     details.classList.remove("hidden");
-    
+    details.innerHTML = `
+    <p id="annulDetails" class="absolute top-4 right-6 text-4xl text-emerald-500 cursor-pointer hover:text-emerald-400">×</p>
+    <div class="profilContainerDetails flex flex-col gap-3 items-center">
+      <img src="${employe.url}" alt="${employe.nom}" class="h-28 w-28 rounded-full border-4 border-emerald-500 object-cover">
+      <p class="text-2xl font-bold text-emerald-500 mt-2">${employe.nom}</p>
+      <p class="text-lg font-semibold text-zinc-400 bg-zinc-800 px-4 py-2 rounded-lg border border-zinc-700">${employe.role}</p>
+      <p class="text-base text-zinc-300">${employe.email}</p>
+      <p class="text-base text-zinc-300">${employe.telephone}</p>
+      <p class="text-base text-emerald-400 font-semibold">${employe.localisation}</p>
+      <h3 class="w-full text-xl font-bold text-center text-emerald-500 mt-6 pb-2 border-b-2 border-zinc-800">Expériences Professionnelles</h3>
+    </div>
+    `;
   });
 }
 
