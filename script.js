@@ -14,21 +14,21 @@ let employe;
 
 function imageaperçu() {
   const url = document.querySelector("#photoUrl").value;
-  const preview = document.querySelector("#imagePreview");
+  const aperçu = document.querySelector("#imageAperçu");
   
   if (url) {
     const img = document.createElement("img");
     img.src = url;
     img.className = "w-full h-full object-cover rounded-full";
     img.onerror = () => {
-      preview.innerHTML = '<span class="text-sm text-red-400">Erreur de chargement</span>';
+      aperçu.innerHTML = '<span class="text-sm text-red-400">Erreur de chargement</span>';
     };
     img.onload = () => {
-      preview.innerHTML = "";
-      preview.appendChild(img);
+      aperçu.innerHTML = "";
+      aperçu.appendChild(img);
     };
   } else {
-    preview.innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
+    aperçu.innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
   }
 }
 
@@ -36,8 +36,15 @@ function cacherFormulaire() {
   formContainerAjout.classList.add("hidden");
   let form = formContainerAjout.querySelector("form");
   form.reset();
-  document.querySelector("#imagePreview").innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
+  document.querySelector("#imageAperçu").innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
   
+}
+
+function detailsemploye(employee, experience) {
+  employee.addEventListener("click", () => {
+    details.classList.remove("hidden");
+    
+  });
 }
 
 
