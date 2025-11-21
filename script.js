@@ -1,7 +1,7 @@
 let ajoutBtn = document.querySelector(".ajouterBtn");
 let formContainerAjout = document.querySelector("#formContainerAjout");
 let annulBtnForm = document.querySelector("#annulBtnForm");
-let addExperienceBtn = document.querySelector("#addExperienceBtn");
+let ajoutExperinceBtn = document.querySelector("#ajoutExperinceBtn");
 let experienceTemplate = document.querySelector("#experienceTemplate");
 let employesContainer = document.querySelector(".employesContainer");
 let experiencesList = document.querySelector("#experiencesList");
@@ -12,7 +12,7 @@ let employe;
 
 
 
-function previewImage() {
+function imageaperçu() {
   const url = document.querySelector("#photoUrl").value;
   const preview = document.querySelector("#imagePreview");
   
@@ -32,11 +32,17 @@ function previewImage() {
   }
 }
 
-function hideForm() {
+function cacherFormulaire() {
   formContainerAjout.classList.add("hidden");
   let form = formContainerAjout.querySelector("form");
   form.reset();
   document.querySelector("#imagePreview").innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
+  
+}
+
+
+
+function validerFormulaire(params) {
   
 }
 
@@ -45,7 +51,7 @@ ajoutBtn.addEventListener("click", () => {
     formContainerAjout.classList.add("flex");
 });
 
-function addExperience() {
+function ajoutExperince() {
   let clone = experienceTemplate.content.cloneNode(true);
   let container = clone.querySelector("div");
   container.querySelector(".removeExpBtn").addEventListener("click", () => {
@@ -54,7 +60,7 @@ function addExperience() {
   experiencesList.append(container);
 }
 
-function filexperiences(experience){
+function remplissageExperience(experience){
   experience.forEach((exp) => {
       const profilContainerDetails = document.querySelector(".profilContainerDetails");
       const divExp = document.createElement("div");
