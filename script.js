@@ -43,6 +43,21 @@ function addExperience() {
   experiencesList.append(container);
 }
 
+function fillemployee(employee) {
+  employee.className =
+    "employe flex pl-3 gap-x-3 rounded-2xl border-emerald-500 border-2 cursor-pointer hover:bg-zinc-800 transition-all";
+  employee.dataset.id = `${employe.id}`;
+  employee.innerHTML = `
+            <div class="imageContainerProfil overflow-hidden mt-2 rounded-xl h-9 w-9">
+            <img class="w-full h-full object-cover" src="${employe.url}" alt="${employe.nom}"/>
+            </div>
+            <div class="infoEmploye mt-1">
+            <h5 class="font-extrabold text-zinc-500">${employe.nom}</h5>
+            <p class="roleEmploye font-bold text-zinc-500">${employe.role}</p>
+            </div>
+            `;
+}
+
 
 formContainerAjout.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -72,4 +87,8 @@ formContainerAjout.addEventListener("submit", (e) => {
     experience : experience,
     localisation : "unsigned"
   };
+
+  const employee = document.createElement("div");
+
+  fillemployee(employee);
 })
