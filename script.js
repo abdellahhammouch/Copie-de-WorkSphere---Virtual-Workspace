@@ -55,6 +55,7 @@ function detailsemploye(employee, experience) {
       <h3 class="w-full text-xl font-bold text-center text-emerald-500 mt-6 pb-2 border-b-2 border-zinc-800">Expériences Professionnelles</h3>
     </div>
     `;
+    filexperiences(experience);
   });
 }
 
