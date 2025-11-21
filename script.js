@@ -1,5 +1,10 @@
 let ajoutBtn = document.querySelector(".ajouterBtn");
 let formContainerAjout = document.querySelector("#formContainerAjout");
+let employes = [];
+let employe;
+
+
+
 
 function previewImage() {
   const url = document.querySelector("#photoUrl").value;
@@ -91,4 +96,5 @@ formContainerAjout.addEventListener("submit", (e) => {
   const employee = document.createElement("div");
 
   fillemployee(employee);
+  employes.push(employe);
 })
