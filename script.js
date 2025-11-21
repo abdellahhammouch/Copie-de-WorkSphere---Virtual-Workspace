@@ -32,4 +32,13 @@ function hideForm() {
 ajoutBtn.addEventListener("click", () => {
     formContainerAjout.classList.remove("hidden");
     formContainerAjout.classList.add("flex");
+});
+
+function addExperience() {
+  let clone = experienceTemplate.content.cloneNode(true);
+  let container = clone.querySelector("div");
+  container.querySelector(".removeExpBtn").addEventListener("click", () => {
+    container.remove();
   });
+  experiencesList.append(container);
+}
