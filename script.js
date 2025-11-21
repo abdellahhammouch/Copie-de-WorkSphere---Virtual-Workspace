@@ -97,4 +97,5 @@ formContainerAjout.addEventListener("submit", (e) => {
 
   fillemployee(employee);
   employes.push(employe);
+  employesContainer.append(employee);
 })
