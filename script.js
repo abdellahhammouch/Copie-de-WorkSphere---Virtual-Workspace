@@ -6,6 +6,7 @@ let experienceTemplate = document.querySelector("#experienceTemplate");
 let employesContainer = document.querySelector(".employesContainer");
 let experiencesList = document.querySelector("#experiencesList");
 let details = document.querySelector("#details");
+let annulDetails = document.querySelector("#annulDetails")
 let employes = [];
 let employe;
 
@@ -56,6 +57,9 @@ function detailsemploye(employee, experience) {
     </div>
     `;
     filexperiences(experience);
+    annulDetails.addEventListener("click", () => {
+      details.classList.add("hidden");
+    })
   });
 }
 
