@@ -330,8 +330,50 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
     // Mettre à jour la couleur de la box
     updateBoxColor(selectedbox);
   });
+
+  // Permettre de voir les détails en cliquant sur l'employé dans la zone
+  empLocal.addEventListener("click", (e) => {
+    // Ne pas ouvrir les détails si on clique sur le bouton de suppression
+    if (e.target.classList.contains('annulEmp')) return;
+    
+    details.classList.remove("hidden");
+    details.innerHTML = `
+    <p id="annulDetails" class="absolute top-4 right-6 text-4xl text-emerald-500 cursor-pointer hover:text-emerald-400">×</p>
+    <div class="profilContainerDetails flex flex-col gap-3 items-center">
+      <img src="${empchosen.url}" alt="Photo De Profile" class="h-28 w-28 rounded-full border-4 border-emerald-500 object-cover">
+      <p class="text-2xl font-bold text-emerald-500 mt-2">${empchosen.nom}</p>
+      <p class="text-lg font-semibold text-zinc-400 bg-zinc-900 px-4 py-2 rounded-lg border border-zinc-700">${empchosen.role}</p>
+      <p class="text-base text-zinc-300">${empchosen.email}</p>
+      <p class="text-base text-zinc-300">${empchosen.telephone}</p>
+      <p class="text-base text-emerald-400 font-semibold">${empchosen.localisation}</p>
+      <h3 class="w-full text-xl font-bold text-emerald-500 mt-6 pb-2 border-b-2 border-zinc-700">Expériences Professionnelles</h3>
+    </div>
+    `;
+    filexperiences(empchosen.experience);
+    annulDetails.addEventListener("click", () => {
+      details.classList.add("hidden");
+    })
+  });
 }
 
+
+
+function updateBoxColor(boxElement) {
+  const employesInBox = boxElement.querySelectorAll(".employe");
+  
+  // Les zones qui doivent être en rouge si vides (sauf box1=Conférence et box5=Personnel)
+  if (boxElement === box2 || boxElement === box3 || boxElement === box4 || boxElement === box6) {
+    if (employesInBox.length === 0) {
+      boxElement.classList.add("bg-red-600/30");
+      boxElement.classList.add("border-red-500/50");
+      boxElement.classList.remove("border-emerald-500/30");
+    } else {
+      boxElement.classList.remove("bg-red-600/30");
+      boxElement.classList.remove("border-red-500/50");
+      boxElement.classList.add("border-emerald-500/30");
+    }
+  }
+}
 
 function filtrerAvailableEmployees(paravailableEmployees,role) {
   let avemployes= [];
