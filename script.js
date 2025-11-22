@@ -63,6 +63,15 @@ function detailsemploye(employee, experience) {
   });
 }
 
+function afficherErreurs(inputElement, message) {
+  const errorDiv = document.createElement("div");
+  errorDiv.className = "error-message text-red-400 text-sm mt-1";
+  errorDiv.textContent = message;
+  
+  inputElement.classList.add("border-red-500");
+  inputElement.parentElement.append(errorDiv);
+}
+
 
 
 function validerFormulaire() {
@@ -87,22 +96,22 @@ function validerFormulaire() {
   const urlRegex = /^https?:\/\/.+\..+/;
 
   if (!nomRegex.test(nom)) {
-    afficherErrors(nomInput, "Le nom est invalide");
+    afficherErreurs(nomInput, "Le nom est invalide");
     isValid = false;
   }
   
   if (!emailRegex.test(email)) {
-    afficherErrors(emailInput, "Format d'email invalide");
+    afficherErreurs(emailInput, "Format d'email invalide");
     isValid = false;
   }
   
   if (!telephoneRegex.test(telephone)) {
-    afficherErrors(telephoneInput, "Format de téléphone invalide");
+    afficherErreurs(telephoneInput, "Format de téléphone invalide");
     isValid = false;
   }
   
   if (url && !urlRegex.test(url)) {
-    afficherErrors(urlInput, "Format d'URL invalide");
+    afficherErreurs(urlInput, "Format d'URL invalide");
     isValid = false;
   }
 }
