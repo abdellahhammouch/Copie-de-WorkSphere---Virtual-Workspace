@@ -263,6 +263,18 @@ function remplirEmployesChoisis(availableEmployees, salle, box) {
                   </div>
               `;
       employesChoose.append(divEmp);
+
+      divEmp.addEventListener("click", () => {
+      let selectedbox = document.querySelector(`.box${box}`);
+      if (selectedbox.children.length < 6) {
+        empchosen.localisation = salle;
+        ajouterEmployerSalle(empchosen, divEmp, box);
+        employesChooseContainer.classList.add("hidden");
+      }else{
+        alert("La salle est pleine");
+      }
+
+      })
     })
 }
 
