@@ -292,6 +292,25 @@ btnsAjout.forEach(btn => {
             employesAvailable.push(emp);
           }
         })
+
+    if(btn.classList.contains("conferenceAjout")){
+      fillEmployesChoose(employesAvailable, "Salle de conférence", 1);
+    }
+    if(btn.classList.contains("personnelAjout")){
+      fillEmployesChoose(employesAvailable, "Salle du personnel", 5);
+    }
+    if(btn.classList.contains("serverAjout")){
+      fillEmployesChoose(employesAvailable, "Salle des serveurs", 2);
+    }
+    if(btn.classList.contains("securiteAjout")){
+      fillEmployesChoose(employesAvailable, "Salle de sécurité", 3);
+    }
+    if(btn.classList.contains("recepcionAjout")){
+      fillEmployesChoose(employesAvailable, "Réception", 4);
+    }
+    if(btn.classList.contains("archiveAjout")){
+      fillEmployesChoose(employesAvailable, "Salle d'archives", 6);
+    }
 });
 });
 
