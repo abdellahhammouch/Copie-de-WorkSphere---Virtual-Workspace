@@ -75,7 +75,7 @@ function afficherErreurs(inputElement, message) {
   inputElement.parentElement.append(errorDiv);
 }
 
-function clearAllErrors() {
+function effacerErreurs() {
   document.querySelectorAll(".error-message").forEach(msg => msg.remove());
   document.querySelectorAll("input, select, textarea").forEach(input => {
     input.classList.remove("border-red-500");
@@ -85,6 +85,7 @@ function clearAllErrors() {
 
 
 function validerFormulaire() {
+  effacerErreurs();
   const emailInput = document.querySelector('input[name="email"]');
   const telephoneInput = document.querySelector('input[name="telephone"]');
   const urlInput = document.querySelector('input[name="url"]');
