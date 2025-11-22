@@ -276,6 +276,10 @@ function remplirEmployesChoisis(availableEmployees, salle, box) {
 
       })
     })
+}else {
+    employesChoose.innerHTML = '<p class="text-zinc-400 text-center p-4">Aucun employé éligible pour cette zone</p>';
+  }
+  employesChooseContainer.classList.remove("hidden");
 }
 
 
