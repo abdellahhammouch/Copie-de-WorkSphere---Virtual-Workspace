@@ -251,7 +251,13 @@ function remplirEmployesChoisis(availableEmployees, salle, box) {
 
 
 function filtrerAvailableEmployees(paravailableEmployees,role) {
-  
+  let avemployes= [];
+  paravailableEmployees.forEach((avemp) => {
+    if (avemp.role === role) {
+      avemployes.push(avemp);
+    }
+  })
+  return avemployes;
 }
 
 
