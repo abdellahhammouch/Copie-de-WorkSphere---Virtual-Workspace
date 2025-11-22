@@ -41,6 +41,47 @@ function cacherFormulaire() {
   
 }
 
+function ajoutExperince() {
+  let clone = experienceTemplate.content.cloneNode(true);
+  let container = clone.querySelector("div");
+  container.querySelector(".removeExpBtn").addEventListener("click", () => {
+    container.remove();
+  });
+  experiencesList.append(container);
+}
+
+function remplirexperiences(experience){
+  experience.forEach((exp) => {
+      const profilContainerDetails = document.querySelector(".profilContainerDetails");
+      const divExp = document.createElement("div");
+      divExp.className = "exp w-full bg-zinc-800 border border-zinc-700 border-l-4 border-l-emerald-500 rounded-xl p-4 mt-4 hover:border-l-emerald-400 hover:shadow-lg";
+      divExp.innerHTML = `
+        <p class="text-lg font-bold text-emerald-500 mb-2">${exp.poste}</p>
+        <p class="text-base text-zinc-400 italic mb-1">${exp.entreprise}</p>
+        <p class="text-sm text-zinc-500">Début: ${exp.debut}</p>
+        <p class="text-sm text-zinc-500 mb-2">Fin: ${exp.fin}</p>
+        <p class="text-sm text-zinc-400 mt-2">${exp.description}</p>
+      `;
+
+      profilContainerDetails.append(divExp);
+    });
+}
+
+function rempliremployee(employee) {
+  employee.className =
+    "employe flex pl-3 gap-x-3 rounded-2xl border-emerald-500 border-2 cursor-pointer hover:bg-zinc-800 transition-all";
+  employee.dataset.id = `${employe.id}`;
+  employee.innerHTML = `
+            <div class="imageContainerProfil overflow-hidden mt-2 rounded-xl h-9 w-9">
+            <img class="w-full h-full object-cover" src="${employe.url}" alt="${employe.nom}"/>
+            </div>
+            <div class="infoEmploye mt-1">
+            <h5 class="font-extrabold text-zinc-500">${employe.nom}</h5>
+            <p class="roleEmploye font-bold text-zinc-500">${employe.role}</p>
+            </div>
+            `;
+}
+
 function detailsemploye(employee, experience) {
   employee.addEventListener("click", () => {
     details.classList.remove("hidden");
@@ -56,13 +97,12 @@ function detailsemploye(employee, experience) {
       <h3 class="w-full text-xl font-bold text-center text-emerald-500 mt-6 pb-2 border-b-2 border-zinc-800">Expériences Professionnelles</h3>
     </div>
     `;
-    filexperiences(experience);
+    remplirexperiences(experience);
     annulDetails.addEventListener("click", () => {
       details.classList.add("hidden");
     })
   });
 }
-
 
 
 // Fonction pour afficher un message d'erreur sous un input
@@ -84,7 +124,7 @@ function effacerErreurs() {
 
 
 
-function validerFormulaire() {
+function validationFormulaire() {
   effacerErreurs();
   const emailInput = document.querySelector('input[name="email"]');
   const telephoneInput = document.querySelector('input[name="telephone"]');
@@ -145,19 +185,8 @@ function validerFormulaire() {
   return isValid;
 }
 
-ajoutBtn.addEventListener("click", () => {
-    formContainerAjout.classList.remove("hidden");
-    formContainerAjout.classList.add("flex");
-});
 
-function ajoutExperince() {
-  let clone = experienceTemplate.content.cloneNode(true);
-  let container = clone.querySelector("div");
-  container.querySelector(".removeExpBtn").addEventListener("click", () => {
-    container.remove();
-  });
-  experiencesList.append(container);
-}
+
 
 function remplissageExperience(experience){
   experience.forEach((exp) => {
@@ -165,7 +194,7 @@ function remplissageExperience(experience){
       const divExp = document.createElement("div");
       divExp.className = "exp w-full bg-zinc-800 border border-zinc-700 border-l-4 border-l-emerald-500 rounded-xl p-4 mt-4 hover:border-l-emerald-400 hover:shadow-lg";
       divExp.innerHTML = `
-        <p class="text-lg font-bold text-emerald-500 mb-2">${exp.poste}</p>
+      <p class="text-lg font-bold text-emerald-500 mb-2">${exp.poste}</p>
         <p class="text-base text-zinc-400 italic mb-1">${exp.entreprise}</p>
         <p class="text-sm text-zinc-500">Début: ${exp.debut}</p>
         <p class="text-sm text-zinc-500 mb-2">Fin: ${exp.fin}</p>
@@ -176,38 +205,12 @@ function remplissageExperience(experience){
     });
 }
 
-function fillemployee(employee) {
-  employee.className =
-    "employe flex pl-3 gap-x-3 rounded-2xl border-emerald-500 border-2 cursor-pointer hover:bg-zinc-800 transition-all";
-  employee.dataset.id = `${employe.id}`;
-  employee.innerHTML = `
-            <div class="imageContainerProfil overflow-hidden mt-2 rounded-xl h-9 w-9">
-            <img class="w-full h-full object-cover" src="${employe.url}" alt="${employe.nom}"/>
-            </div>
-            <div class="infoEmploye mt-1">
-            <h5 class="font-extrabold text-zinc-500">${employe.nom}</h5>
-            <p class="roleEmploye font-bold text-zinc-500">${employe.role}</p>
-            </div>
-            `;
-}
 
 
-function filexperiences(experience){
-  experience.forEach((exp) => {
-      const profilContainerDetails = document.querySelector(".profilContainerDetails");
-      const divExp = document.createElement("div");
-      divExp.className = "exp w-full bg-zinc-800 border border-zinc-700 border-l-4 border-l-emerald-500 rounded-xl p-4 mt-4 hover:border-l-emerald-400 hover:shadow-lg";
-      divExp.innerHTML = `
-        <p class="text-lg font-bold text-emerald-500 mb-2">${exp.poste}</p>
-        <p class="text-base text-zinc-400 italic mb-1">${exp.entreprise}</p>
-        <p class="text-sm text-zinc-500">Début: ${exp.debut}</p>
-        <p class="text-sm text-zinc-500 mb-2">Fin: ${exp.fin}</p>
-        <p class="text-sm text-zinc-400 mt-2">${exp.description}</p>
-      `;
-
-      profilContainerDetails.append(divExp);
-    });
-}
+ajoutBtn.addEventListener("click", () => {
+      formContainerAjout.classList.remove("hidden");
+      formContainerAjout.classList.add("flex");
+});
 
 
 formContainerAjout.addEventListener("submit", (e) => {
@@ -215,7 +218,7 @@ formContainerAjout.addEventListener("submit", (e) => {
   
 
   // Validation du formulaire
-  if (!validateForm()) {
+  if (!validationFormulaire()) {
     return;
   }
   
@@ -246,9 +249,23 @@ formContainerAjout.addEventListener("submit", (e) => {
 
   const employee = document.createElement("div");
 
-  fillemployee(employee);
+  rempliremployee(employee);
+  
   detailsemploye(employee, experience);
+  
   employes.push(employe);
+
   employesContainer.append(employee);
+
   cacherFormulaire();
 })
+
+
+addExperienceBtn.addEventListener("click", () => {
+    addExperience();
+});
+
+
+annulBtnForm.addEventListener("click", () => {
+  hideForm();
+});
