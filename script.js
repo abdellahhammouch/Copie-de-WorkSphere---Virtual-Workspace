@@ -311,6 +311,9 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
     }
   });
 
+  // Mettre à jour la couleur de la box
+  updateBoxColor(selectedbox);
+
   // Événement pour retirer l'employé de la zone
   empLocal.querySelector(".annulEmp").addEventListener('click', (e) => {
     e.stopPropagation();
