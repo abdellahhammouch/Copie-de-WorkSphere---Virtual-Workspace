@@ -1,15 +1,27 @@
 let ajoutBtn = document.querySelector(".ajouterBtn");
 let formContainerAjout = document.querySelector("#formContainerAjout");
+let form = formContainerAjout.querySelector("form");
 let annulBtnForm = document.querySelector("#annulBtnForm");
 let ajoutExperinceBtn = document.querySelector("#ajoutExperinceBtn");
 let experienceTemplate = document.querySelector("#experienceTemplate");
 let employesContainer = document.querySelector(".employesContainer");
 let experiencesList = document.querySelector("#experiencesList");
+let employesChooseContainer = document.querySelector("#employesChooseContainer");
+let employesChoose = document.querySelector(".employesChoose");
+let suppEmpChoose = document.querySelector("#suppEmpChoose");
 let details = document.querySelector("#details");
-let annulDetails = document.querySelector("#annulDetails")
+let btnsAjout = document.querySelectorAll(".ajoutBtn");
+let annulDetails = document.querySelector("#annulDetails");
+let boxes = document.querySelectorAll(".boxes");
+let box1 = document.querySelector(".box1");
+let box2 = document.querySelector(".box2");
+let box3 = document.querySelector(".box3");
+let box4 = document.querySelector(".box4");
+let box5 = document.querySelector(".box5");
+let box6 = document.querySelector(".box6");
+let employesAvailable;
 let employes = [];
 let employe;
-
 
 
 
@@ -21,13 +33,8 @@ function imageaperçu() {
     const img = document.createElement("img");
     img.src = url;
     img.className = "w-full h-full object-cover rounded-full";
-    img.onerror = () => {
-      aperçu.innerHTML = '<span class="text-sm text-red-400">Erreur de chargement</span>';
-    };
-    img.onload = () => {
-      aperçu.innerHTML = "";
-      aperçu.appendChild(img);
-    };
+    aperçu.innerHTML = "";
+    aperçu.appendChild(img);
   } else {
     aperçu.innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
   }
@@ -35,19 +42,19 @@ function imageaperçu() {
 
 function cacherFormulaire() {
   formContainerAjout.classList.add("hidden");
-  let form = formContainerAjout.querySelector("form");
   form.reset();
   document.querySelector("#imageAperçu").innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
-  
+
+  effacerErreurs();
 }
 
 function ajoutExperince() {
   let clone = experienceTemplate.content.cloneNode(true);
   let container = clone.querySelector("div");
+  experiencesList.append(container);
   container.querySelector(".removeExpBtn").addEventListener("click", () => {
     container.remove();
   });
-  experiencesList.append(container);
 }
 
 function remplirexperiences(experience){
