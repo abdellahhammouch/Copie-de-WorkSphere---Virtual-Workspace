@@ -302,15 +302,17 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
                       <button class="annulEmp text-emerald-500 rounded-full w-5 h-5 flex items-center justify-center text-sm ml-1">×</button>
                     </div>
   `;
+  
   selectedbox.append(empLocal);
   divEmp.remove();
 
+   // Retirer de la sidebar
   employesContainer.querySelectorAll(".employe").forEach((empl) => {
     if (empl.getAttribute("data-id") === empchosen.id.toString()) {
       empl.remove();
     }
   });
-
+  
   // Mettre à jour la couleur de la box
   updateBoxColor(selectedbox);
 
