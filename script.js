@@ -40,13 +40,16 @@ function imageaperçu() {
   }
 }
 
+
 function cacherFormulaire() {
   formContainerAjout.classList.add("hidden");
   form.reset();
+
   document.querySelector("#imageAperçu").innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
 
   effacerErreurs();
 }
+
 
 function ajoutExperince() {
   let clone = experienceTemplate.content.cloneNode(true);
@@ -56,6 +59,7 @@ function ajoutExperince() {
     container.remove();
   });
 }
+
 
 function remplirexperiences(experience){
   experience.forEach((exp) => {
@@ -73,6 +77,7 @@ function remplirexperiences(experience){
       profilContainerDetails.append(divExp);
     });
 }
+
 
 function rempliremployee(employee) {
   employee.className =
@@ -133,6 +138,7 @@ function effacerErreurs() {
 
 function validationFormulaire() {
   effacerErreurs();
+  const nomInput = document.querySelector('input[name="nom"]');
   const emailInput = document.querySelector('input[name="email"]');
   const telephoneInput = document.querySelector('input[name="telephone"]');
   const urlInput = document.querySelector('input[name="url"]');
@@ -152,6 +158,7 @@ function validationFormulaire() {
   const telephoneRegex = /^\+?[0-9\s\-()]{10,20}$/;
   // const telephoneRegex = /^\+?[0-9\s]{10}$/;
   const urlRegex = /^https?:\/\/.+\..+/;
+
 
   if (!nomRegex.test(nom)) {
     afficherErreurs(nomInput, "Le nom est invalide");
@@ -183,7 +190,7 @@ function validationFormulaire() {
       const fin = finInput.value;
       
       if (debut > fin) {
-        afficherErrors(finInput, "La date de fin doit être postérieure à la date de début");
+        afficherErreurs(finInput, "La date de fin doit être postérieure à la date de début");
         isValid = false;
       }
     }
@@ -223,7 +230,6 @@ ajoutBtn.addEventListener("click", () => {
 formContainerAjout.addEventListener("submit", (e) => {
   e.preventDefault();
   
-
   // Validation du formulaire
   if (!validationFormulaire()) {
     return;
@@ -265,14 +271,27 @@ formContainerAjout.addEventListener("submit", (e) => {
   employesContainer.append(employee);
 
   cacherFormulaire();
-})
+});
 
 
-addExperienceBtn.addEventListener("click", () => {
-    addExperience();
+ajoutExperinceBtn.addEventListener("click", () => {
+    ajoutExperince();
 });
 
 
 annulBtnForm.addEventListener("click", () => {
-  hideForm();
+  cacherFormulaire();
 });
+
+
+btnsAjout.forEach(btn => {
+    btn.addEventListener("click", () => {
+        employesAvailable = [];
+        employes.forEach((emp) => {
+          if (emp.localisation === "unsigned"){
+            employesAvailable.push(emp);
+          }
+        })
+});
+});
+
