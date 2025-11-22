@@ -65,8 +65,15 @@ function detailsemploye(employee, experience) {
 
 
 
-function validerFormulaire(params) {
+function validerFormulaire() {
+  const emailInput = document.querySelector('input[name="email"]');
+  const telephoneInput = document.querySelector('input[name="telephone"]');
+  const urlInput = document.querySelector('input[name="url"]');
+  let isValid = true;
   
+  if (!nomInput || !emailInput || !telephoneInput) {
+    return !isValid;
+  }
 }
 
 ajoutBtn.addEventListener("click", () => {
