@@ -125,6 +125,24 @@ function validerFormulaire() {
     afficherErreurs(urlInput, "Format d'URL invalide");
     isValid = false;
   }
+
+  const experiencedata = document.querySelectorAll(".experiencedata");
+  experiencedata.forEach((exp) => {
+    const debutInput = exp.querySelector('input[name="debut"]');
+    const finInput = exp.querySelector('input[name="fin"]');
+    
+    if (debutInput && finInput) {
+      const debut = debutInput.value;
+      const fin = finInput.value;
+      
+      if (debut > fin) {
+        afficherErrors(finInput, "La date de fin doit être postérieure à la date de début");
+        isValid = false;
+      }
+    }
+  });
+  
+  return isValid;
 }
 
 ajoutBtn.addEventListener("click", () => {
