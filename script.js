@@ -116,7 +116,6 @@ function detailsemploye(employee, experience) {
   });
 }
 
-
 // Fonction pour afficher un message d'erreur sous un input
 function afficherErreurs(inputElement, message) {
   const errorDiv = document.createElement("div");
@@ -127,13 +126,13 @@ function afficherErreurs(inputElement, message) {
   inputElement.parentElement.append(errorDiv);
 }
 
+// Fonction pour supprimer tous les messages d'erreur
 function effacerErreurs() {
   document.querySelectorAll(".error-message").forEach(msg => msg.remove());
   document.querySelectorAll("input, select, textarea").forEach(input => {
     input.classList.remove("border-red-500");
   });
 }
-
 
 
 function validationFormulaire() {
@@ -200,23 +199,49 @@ function validationFormulaire() {
 }
 
 
+function filtrerAvailableEmployees(paravailableEmployees,role) {
+  let avemployes= [];
+  paravailableEmployees.forEach((avemp) => {
+    if (avemp.role === role) {
+      avemployes.push(avemp);
+    }
+  })
+  return avemployes;
+}
 
 
-function remplissageExperience(experience){
-  experience.forEach((exp) => {
-      const profilContainerDetails = document.querySelector(".profilContainerDetails");
-      const divExp = document.createElement("div");
-      divExp.className = "exp w-full bg-zinc-800 border border-zinc-700 border-l-4 border-l-emerald-500 rounded-xl p-4 mt-4 hover:border-l-emerald-400 hover:shadow-lg";
-      divExp.innerHTML = `
-      <p class="text-lg font-bold text-emerald-500 mb-2">${exp.poste}</p>
-        <p class="text-base text-zinc-400 italic mb-1">${exp.entreprise}</p>
-        <p class="text-sm text-zinc-500">Début: ${exp.debut}</p>
-        <p class="text-sm text-zinc-500 mb-2">Fin: ${exp.fin}</p>
-        <p class="text-sm text-zinc-400 mt-2">${exp.description}</p>
-      `;
+function updateBoxColor(boxElement) {
+  const employesInBox = boxElement.querySelectorAll(".employe");
+  
+  // Les zones qui doivent être en rouge si vides (sauf box1=Conférence et box5=Personnel)
+  if (boxElement === box2 || boxElement === box3 || boxElement === box4 || boxElement === box6) {
+    if (employesInBox.length === 0) {
+      boxElement.classList.add("bg-red-600/30");
+      boxElement.classList.add("border-red-500/50");
+      boxElement.classList.remove("border-emerald-500/30");
+    } else {
+      boxElement.classList.remove("bg-red-600/30");
+      boxElement.classList.remove("border-red-500/50");
+      boxElement.classList.add("border-emerald-500/30");
+    }
+  }
+}
 
-      profilContainerDetails.append(divExp);
-    });
+
+function ajoutEmployeUnsigned(employee, emp) {
+  employee.className = "employe flex pl-3 gap-x-3 rounded-2xl border-emerald-500 border-2 cursor-pointer hover:bg-zinc-800 transition-all";
+  employee.dataset.id = `${emp.id}`;
+  employee.innerHTML = `
+            <div class="imageContainerProfil overflow-hidden mt-2 rounded-xl h-9 w-9">
+            <img class="w-full h-full object-cover" src="${emp.url}" alt="${emp.nom}"/>
+            </div>
+            <div class="infoEmploye mt-1">
+            <h5 class="font-extrabold text-zinc-500">${emp.nom}</h5>
+            <p class="roleEmploye font-bold text-zinc-500">${emp.role}</p>
+            </div>
+  `;
+  
+  detailsemploye(employee, emp.experience);
 }
 
 
@@ -302,7 +327,7 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
                       <button class="annulEmp text-emerald-500 rounded-full w-5 h-5 flex items-center justify-center text-sm ml-1">×</button>
                     </div>
   `;
-  
+
   selectedbox.append(empLocal);
   divEmp.remove();
 
@@ -359,41 +384,18 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
 }
 
 
-
-function updateBoxColor(boxElement) {
-  const employesInBox = boxElement.querySelectorAll(".employe");
-  
-  // Les zones qui doivent être en rouge si vides (sauf box1=Conférence et box5=Personnel)
-  if (boxElement === box2 || boxElement === box3 || boxElement === box4 || boxElement === box6) {
-    if (employesInBox.length === 0) {
-      boxElement.classList.add("bg-red-600/30");
-      boxElement.classList.add("border-red-500/50");
-      boxElement.classList.remove("border-emerald-500/30");
-    } else {
-      boxElement.classList.remove("bg-red-600/30");
-      boxElement.classList.remove("border-red-500/50");
-      boxElement.classList.add("border-emerald-500/30");
-    }
-  }
-}
-
-function filtrerAvailableEmployees(paravailableEmployees,role) {
-  let avemployes= [];
-  paravailableEmployees.forEach((avemp) => {
-    if (avemp.role === role) {
-      avemployes.push(avemp);
-    }
-  })
-  return avemployes;
-}
-
-
-
 ajoutBtn.addEventListener("click", () => {
       formContainerAjout.classList.remove("hidden");
       formContainerAjout.classList.add("flex");
 });
 
+ajoutExperinceBtn.addEventListener("click", () => {
+    ajoutExperince();
+});
+
+annulBtnForm.addEventListener("click", () => {
+  cacherFormulaire();
+});
 
 formContainerAjout.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -441,16 +443,6 @@ formContainerAjout.addEventListener("submit", (e) => {
   cacherFormulaire();
 });
 
-
-ajoutExperinceBtn.addEventListener("click", () => {
-    ajoutExperince();
-});
-
-
-annulBtnForm.addEventListener("click", () => {
-  cacherFormulaire();
-});
-
 suppEmpChoose.addEventListener("click", () => {
   employesChooseContainer.classList.add("hidden");
   employesChoose.innerHTML = '';
@@ -486,4 +478,3 @@ btnsAjout.forEach(btn => {
     }
 });
 });
-
