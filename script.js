@@ -10,7 +10,6 @@ let employesChoose = document.querySelector(".employesChoose"); // ← CORRIGÉ:
 let suppEmpChoose = document.querySelector("#suppEmpChoose");
 let details = document.querySelector("#details");
 let btnsAjout = document.querySelectorAll(".ajoutBtn");
-let annulDetails = document.querySelector("#annulDetails")
 let boxes = document.querySelectorAll(".boxes");
 let box1 = document.querySelector(".box1");
 let box2 = document.querySelector(".box2");
@@ -92,7 +91,7 @@ function fillemployee(employee) {
             <p class="roleEmploye font-bold text-zinc-500">${employe.role}</p>
             </div>
             `;
-}
+} 
 
 function detailsemploye(employee, experience) {
   employee.addEventListener("click", () => {
@@ -110,7 +109,7 @@ function detailsemploye(employee, experience) {
     </div>
     `;
     filexperiences(experience);
-    annulDetails.addEventListener("click", () => {
+    document.querySelector("#annulDetails").addEventListener("click", () => {
       details.classList.add("hidden");
     })
   });
