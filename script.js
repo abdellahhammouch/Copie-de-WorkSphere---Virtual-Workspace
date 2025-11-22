@@ -70,10 +70,21 @@ function validerFormulaire() {
   const telephoneInput = document.querySelector('input[name="telephone"]');
   const urlInput = document.querySelector('input[name="url"]');
   let isValid = true;
-  
+
   if (!nomInput || !emailInput || !telephoneInput) {
     return !isValid;
   }
+
+  const nom = nomInput.value.trim();
+  const email = emailInput.value.trim();
+  const telephone = telephoneInput.value.trim();
+  const url = urlInput.value.trim();
+
+  const nomRegex = /^[a-zA-ZÀ-ÿ\s]{2,50}$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const telephoneRegex = /^\+?[0-9\s\-()]{10,20}$/;
+  // const telephoneRegex = /^\+?[0-9\s]{10}$/;
+  const urlRegex = /^https?:\/\/.+\..+/;
 }
 
 ajoutBtn.addEventListener("click", () => {
