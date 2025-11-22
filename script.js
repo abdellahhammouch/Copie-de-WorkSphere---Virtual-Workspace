@@ -224,7 +224,7 @@ function remplirEmployesChoisis(availableEmployees, salle, box) {
   employesChoose.innerHTML = '';
   let employesChosen = [];
   
-  // Règles métier
+  // Règles des salles
   if (salle === "Salle des serveurs") {
     employesChosen = filtrerAvailableEmployees(availableEmployees, "IT");
     employesChosen.push(...filtrerAvailableEmployees(availableEmployees, "M"));
@@ -279,7 +279,29 @@ function remplirEmployesChoisis(availableEmployees, salle, box) {
 }else {
     employesChoose.innerHTML = '<p class="text-zinc-400 text-center p-4">Aucun employé éligible pour cette zone</p>';
   }
+
   employesChooseContainer.classList.remove("hidden");
+}
+
+
+function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
+  let selectedbox = document.querySelector(`.box${boxNumber}`);
+  
+  let empLocal = document.createElement("div");
+  empLocal.className = "employe flex w-28 pl-2 py-1 bg-zinc-900 gap-x-2 rounded-xl border-emerald-500 border-2 hover:scale-105 transition-all cursor-pointer";
+  empLocal.dataset.id = empchosen.id;
+  empLocal.innerHTML = `
+                    <div class="imageContainerProfi overflow-hidden rounded-lg h-8 w-8">
+                      <img class="w-full h-full object-cover" src="${empchosen.url}" alt="${empchosen.nom}"/>
+                    </div>
+                    <div class="infoEmploye flex-1 flex items-center justify-between">
+                      <div class="flex-1 min-w-0">
+                        <h5 class="text-xs font-bold text-zinc-400 truncate">${empchosen.nom}</h5>
+                        <p class="roleEmploye text-xs text-zinc-400">${empchosen.role}</p>
+                      </div>
+                      <button class="annulEmp text-emerald-500 rounded-full w-5 h-5 flex items-center justify-center text-sm ml-1">×</button>
+                    </div>
+  `;
 }
 
 
@@ -355,6 +377,11 @@ ajoutExperinceBtn.addEventListener("click", () => {
 
 annulBtnForm.addEventListener("click", () => {
   cacherFormulaire();
+});
+
+suppEmpChoose.addEventListener("click", () => {
+  employesChooseContainer.classList.add("hidden");
+  employesChoose.innerHTML = '';
 });
 
 
