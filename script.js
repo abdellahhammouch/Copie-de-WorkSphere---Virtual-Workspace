@@ -304,6 +304,12 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
   `;
   selectedbox.append(empLocal);
   divEmp.remove();
+
+  employesContainer.querySelectorAll(".employe").forEach((empl) => {
+    if (empl.getAttribute("data-id") === empchosen.id.toString()) {
+      empl.remove();
+    }
+  });
 }
 
 
