@@ -310,6 +310,23 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
       empl.remove();
     }
   });
+
+  // Événement pour retirer l'employé de la zone
+  empLocal.querySelector(".annulEmp").addEventListener('click', (e) => {
+    e.stopPropagation();
+    empLocal.remove();
+    
+    // Remettre l'employé dans unsigned
+    empchosen.localisation = "unsigned";
+    
+    // Recréer l'employé dans la sidebar
+    const employee = document.createElement("div");
+    ajoutEmployeUnsigned(employee, empchosen);
+    employesContainer.appendChild(employee);
+    
+    // Mettre à jour la couleur de la box
+    updateBoxColor(selectedbox);
+  });
 }
 
 
