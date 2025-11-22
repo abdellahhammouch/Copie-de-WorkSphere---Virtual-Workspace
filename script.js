@@ -247,6 +247,23 @@ function remplirEmployesChoisis(availableEmployees, salle, box) {
     // Tous peuvent accéder
     employesChosen = [...availableEmployees];
   }
+
+  if (employesChosen.length !== 0) {
+    employesChosen.forEach((empchosen) => {
+      let divEmp = document.createElement("div");
+      divEmp.className = `employe flex pl-3 gap-x-3 rounded-2xl border-emerald-500 border-2 cursor-pointer hover:bg-zinc-700 transition-all mt-2`;
+      divEmp.dataset.id = `${empchosen.id}`;
+      divEmp.innerHTML = `
+                  <div class="imageContainerProfil overflow-hidden mt-2 rounded-xl h-9 w-9">
+                    <img class="w-full h-full object-cover" src="${empchosen.url}" alt="${empchosen.nom}"/>
+                  </div>
+                  <div class="infoEmploye mt-1">
+                    <h5 class="font-extrabold text-zinc-500">${empchosen.nom}</h5>
+                    <p class="roleEmploye font-bold text-zinc-500">${empchosen.role}</p>
+                  </div>
+              `;
+      employesChoose.append(divEmp);
+    })
 }
 
 
