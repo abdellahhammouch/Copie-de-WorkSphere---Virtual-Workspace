@@ -85,6 +85,26 @@ function validerFormulaire() {
   const telephoneRegex = /^\+?[0-9\s\-()]{10,20}$/;
   // const telephoneRegex = /^\+?[0-9\s]{10}$/;
   const urlRegex = /^https?:\/\/.+\..+/;
+
+  if (!nomRegex.test(nom)) {
+    afficherErrors(nomInput, "Le nom est invalide");
+    isValid = false;
+  }
+  
+  if (!emailRegex.test(email)) {
+    afficherErrors(emailInput, "Format d'email invalide");
+    isValid = false;
+  }
+  
+  if (!telephoneRegex.test(telephone)) {
+    afficherErrors(telephoneInput, "Format de téléphone invalide");
+    isValid = false;
+  }
+  
+  if (url && !urlRegex.test(url)) {
+    afficherErrors(urlInput, "Format d'URL invalide");
+    isValid = false;
+  }
 }
 
 ajoutBtn.addEventListener("click", () => {
