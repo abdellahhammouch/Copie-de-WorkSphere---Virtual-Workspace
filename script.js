@@ -1,17 +1,16 @@
 let ajoutBtn = document.querySelector(".ajouterBtn");
 let formContainerAjout = document.querySelector("#formContainerAjout");
-let form = formContainerAjout.querySelector("form");
 let annulBtnForm = document.querySelector("#annulBtnForm");
-let ajoutExperinceBtn = document.querySelector("#ajoutExperinceBtn");
+let addExperienceBtn = document.querySelector("#addExperienceBtn");
 let experienceTemplate = document.querySelector("#experienceTemplate");
 let employesContainer = document.querySelector(".employesContainer");
 let experiencesList = document.querySelector("#experiencesList");
 let employesChooseContainer = document.querySelector("#employesChooseContainer");
-let employesChoose = document.querySelector(".employesChoose");
+let employesChoose = document.querySelector(".employesChoose"); // ← CORRIGÉ: . au lieu de #
 let suppEmpChoose = document.querySelector("#suppEmpChoose");
 let details = document.querySelector("#details");
 let btnsAjout = document.querySelectorAll(".ajoutBtn");
-let annulDetails = document.querySelector("#annulDetails");
+let annulDetails = document.querySelector("#annulDetails")
 let boxes = document.querySelectorAll(".boxes");
 let box1 = document.querySelector(".box1");
 let box2 = document.querySelector(".box2");
@@ -25,43 +24,44 @@ let employe;
 
 
 
-function imageaperçu() {
+
+function previewImage() {
   const url = document.querySelector("#photoUrl").value;
-  const aperçu = document.querySelector("#imageAperçu");
+  const preview = document.querySelector("#imagePreview");
   
   if (url) {
     const img = document.createElement("img");
     img.src = url;
     img.className = "w-full h-full object-cover rounded-full";
-    aperçu.innerHTML = "";
-    aperçu.appendChild(img);
+    preview.innerHTML = "";
+    preview.appendChild(img);
   } else {
-    aperçu.innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
+    preview.innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
   }
 }
 
 
-function cacherFormulaire() {
+function hideForm() {
   formContainerAjout.classList.add("hidden");
+  let form = formContainerAjout.querySelector("form");
   form.reset();
-
-  document.querySelector("#imageAperçu").innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
-
-  effacerErreurs();
+  document.querySelector("#imagePreview").innerHTML = '<span class="text-sm text-zinc-400">Aucune image</span>';
+  // Supprimer tous les messages d'erreur
+  clearAllErrors();
 }
 
 
-function ajoutExperince() {
+function addExperience() {
   let clone = experienceTemplate.content.cloneNode(true);
   let container = clone.querySelector("div");
-  experiencesList.append(container);
   container.querySelector(".removeExpBtn").addEventListener("click", () => {
     container.remove();
   });
+  experiencesList.append(container);
 }
 
 
-function remplirexperiences(experience){
+function filexperiences(experience){
   experience.forEach((exp) => {
       const profilContainerDetails = document.querySelector(".profilContainerDetails");
       const divExp = document.createElement("div");
@@ -79,7 +79,7 @@ function remplirexperiences(experience){
 }
 
 
-function rempliremployee(employee) {
+function fillemployee(employee) {
   employee.className =
     "employe flex pl-3 gap-x-3 rounded-2xl border-emerald-500 border-2 cursor-pointer hover:bg-zinc-800 transition-all";
   employee.dataset.id = `${employe.id}`;
@@ -109,7 +109,7 @@ function detailsemploye(employee, experience) {
       <h3 class="w-full text-xl font-bold text-center text-emerald-500 mt-6 pb-2 border-b-2 border-zinc-800">Expériences Professionnelles</h3>
     </div>
     `;
-    remplirexperiences(experience);
+    filexperiences(experience);
     annulDetails.addEventListener("click", () => {
       details.classList.add("hidden");
     })
@@ -117,17 +117,17 @@ function detailsemploye(employee, experience) {
 }
 
 // Fonction pour afficher un message d'erreur sous un input
-function afficherErreurs(inputElement, message) {
+function afficherErrors(inputElement, message) {
   const errorDiv = document.createElement("div");
   errorDiv.className = "error-message text-red-400 text-sm mt-1";
   errorDiv.textContent = message;
   
   inputElement.classList.add("border-red-500");
-  inputElement.parentElement.append(errorDiv);
+  inputElement.parentElement.appendChild(errorDiv);
 }
 
 // Fonction pour supprimer tous les messages d'erreur
-function effacerErreurs() {
+function clearAllErrors() {
   document.querySelectorAll(".error-message").forEach(msg => msg.remove());
   document.querySelectorAll("input, select, textarea").forEach(input => {
     input.classList.remove("border-red-500");
@@ -135,50 +135,50 @@ function effacerErreurs() {
 }
 
 
-function validationFormulaire() {
-  effacerErreurs();
+function validateForm() {
+  clearAllErrors();
   const nomInput = document.querySelector('input[name="nom"]');
   const emailInput = document.querySelector('input[name="email"]');
   const telephoneInput = document.querySelector('input[name="telephone"]');
   const urlInput = document.querySelector('input[name="url"]');
   let isValid = true;
-
+  
   if (!nomInput || !emailInput || !telephoneInput) {
     return !isValid;
   }
-
+  
   const nom = nomInput.value.trim();
   const email = emailInput.value.trim();
   const telephone = telephoneInput.value.trim();
   const url = urlInput.value.trim();
-
+  
   const nomRegex = /^[a-zA-ZÀ-ÿ\s]{2,50}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const telephoneRegex = /^\+?[0-9\s\-()]{10,20}$/;
   // const telephoneRegex = /^\+?[0-9\s]{10}$/;
   const urlRegex = /^https?:\/\/.+\..+/;
-
-
+  
+  
   if (!nomRegex.test(nom)) {
-    afficherErreurs(nomInput, "Le nom est invalide");
+    afficherErrors(nomInput, "Le nom est invalide");
     isValid = false;
   }
   
   if (!emailRegex.test(email)) {
-    afficherErreurs(emailInput, "Format d'email invalide");
+    afficherErrors(emailInput, "Format d'email invalide");
     isValid = false;
   }
   
   if (!telephoneRegex.test(telephone)) {
-    afficherErreurs(telephoneInput, "Format de téléphone invalide");
+    afficherErrors(telephoneInput, "Format de téléphone invalide");
     isValid = false;
   }
   
   if (url && !urlRegex.test(url)) {
-    afficherErreurs(urlInput, "Format d'URL invalide");
+    afficherErrors(urlInput, "Format d'URL invalide");
     isValid = false;
   }
-
+  
   const experiencedata = document.querySelectorAll(".experiencedata");
   experiencedata.forEach((exp) => {
     const debutInput = exp.querySelector('input[name="debut"]');
@@ -189,7 +189,7 @@ function validationFormulaire() {
       const fin = finInput.value;
       
       if (debut > fin) {
-        afficherErreurs(finInput, "La date de fin doit être postérieure à la date de début");
+        afficherErrors(finInput, "La date de fin doit être postérieure à la date de début");
         isValid = false;
       }
     }
@@ -245,11 +245,11 @@ function ajoutEmployeUnsigned(employee, emp) {
 }
 
 
-function remplirEmployesChoisis(availableEmployees, salle, box) {
+function fillEmployesChoose(availableEmployees, salle, box) {
   employesChoose.innerHTML = '';
   let employesChosen = [];
   
-  // Règles des salles
+  // Règles métier
   if (salle === "Salle des serveurs") {
     employesChosen = filtrerAvailableEmployees(availableEmployees, "IT");
     employesChosen.push(...filtrerAvailableEmployees(availableEmployees, "M"));
@@ -288,7 +288,7 @@ function remplirEmployesChoisis(availableEmployees, salle, box) {
                   </div>
               `;
       employesChoose.append(divEmp);
-
+      
       divEmp.addEventListener("click", () => {
       let selectedbox = document.querySelector(`.box${box}`);
       if (selectedbox.children.length < 6) {
@@ -301,10 +301,10 @@ function remplirEmployesChoisis(availableEmployees, salle, box) {
 
       })
     })
-}else {
+  } else {
     employesChoose.innerHTML = '<p class="text-zinc-400 text-center p-4">Aucun employé éligible pour cette zone</p>';
   }
-
+  
   employesChooseContainer.classList.remove("hidden");
 }
 
@@ -327,11 +327,11 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
                       <button class="annulEmp text-emerald-500 rounded-full w-5 h-5 flex items-center justify-center text-sm ml-1">×</button>
                     </div>
   `;
-
+  
   selectedbox.append(empLocal);
   divEmp.remove();
-
-   // Retirer de la sidebar
+  
+  // Retirer de la sidebar
   employesContainer.querySelectorAll(".employe").forEach((empl) => {
     if (empl.getAttribute("data-id") === empchosen.id.toString()) {
       empl.remove();
@@ -340,7 +340,7 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
   
   // Mettre à jour la couleur de la box
   updateBoxColor(selectedbox);
-
+  
   // Événement pour retirer l'employé de la zone
   empLocal.querySelector(".annulEmp").addEventListener('click', (e) => {
     e.stopPropagation();
@@ -357,7 +357,7 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
     // Mettre à jour la couleur de la box
     updateBoxColor(selectedbox);
   });
-
+  
   // Permettre de voir les détails en cliquant sur l'employé dans la zone
   empLocal.addEventListener("click", (e) => {
     // Ne pas ouvrir les détails si on clique sur le bouton de suppression
@@ -385,27 +385,27 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
 
 
 ajoutBtn.addEventListener("click", () => {
-      formContainerAjout.classList.remove("hidden");
-      formContainerAjout.classList.add("flex");
-});
-
-ajoutExperinceBtn.addEventListener("click", () => {
-    ajoutExperince();
+    formContainerAjout.classList.remove("hidden");
+    formContainerAjout.classList.add("flex");
+  });
+  
+addExperienceBtn.addEventListener("click", () => {
+    addExperience();
 });
 
 annulBtnForm.addEventListener("click", () => {
-  cacherFormulaire();
+  hideForm();
 });
 
 formContainerAjout.addEventListener("submit", (e) => {
   e.preventDefault();
   
   // Validation du formulaire
-  if (!validationFormulaire()) {
+  if (!validateForm()) {
     return;
   }
-  
-  // Obtenir Les experiences Ajoutées
+
+  // get experience
   let experiencedata = document.querySelectorAll(".experiencedata");
   let experience = [];
   
@@ -432,15 +432,15 @@ formContainerAjout.addEventListener("submit", (e) => {
 
   const employee = document.createElement("div");
 
-  rempliremployee(employee);
-  
+  fillemployee(employee);
+
   detailsemploye(employee, experience);
   
   employes.push(employe);
 
   employesContainer.append(employee);
 
-  cacherFormulaire();
+  hideForm();
 });
 
 suppEmpChoose.addEventListener("click", () => {
@@ -457,24 +457,24 @@ btnsAjout.forEach(btn => {
             employesAvailable.push(emp);
           }
         })
-
+    
     if(btn.classList.contains("conferenceAjout")){
-      remplirEmployesChoisis(employesAvailable, "Salle de conférence", 1);
+      fillEmployesChoose(employesAvailable, "Salle de conférence", 1);
     }
     if(btn.classList.contains("personnelAjout")){
-      remplirEmployesChoisis(employesAvailable, "Salle du personnel", 5);
+      fillEmployesChoose(employesAvailable, "Salle du personnel", 5);
     }
     if(btn.classList.contains("serverAjout")){
-      remplirEmployesChoisis(employesAvailable, "Salle des serveurs", 2);
+      fillEmployesChoose(employesAvailable, "Salle des serveurs", 2);
     }
     if(btn.classList.contains("securiteAjout")){
-      remplirEmployesChoisis(employesAvailable, "Salle de sécurité", 3);
+      fillEmployesChoose(employesAvailable, "Salle de sécurité", 3);
     }
     if(btn.classList.contains("recepcionAjout")){
-      remplirEmployesChoisis(employesAvailable, "Réception", 4);
+      fillEmployesChoose(employesAvailable, "Réception", 4);
     }
     if(btn.classList.contains("archiveAjout")){
-      remplirEmployesChoisis(employesAvailable, "Salle d'archives", 6);
+      fillEmployesChoose(employesAvailable, "Salle d'archives", 6);
     }
-});
+    });
 });
