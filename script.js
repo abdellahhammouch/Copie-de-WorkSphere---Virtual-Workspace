@@ -220,6 +220,41 @@ function remplissageExperience(experience){
 }
 
 
+function remplirEmployesChoisis(availableEmployees, salle, box) {
+  employesChoose.innerHTML = '';
+  let employesChosen = [];
+  
+  // Règles métier
+  if (salle === "Salle des serveurs") {
+    employesChosen = filtrerAvailableEmployees(availableEmployees, "IT");
+    employesChosen.push(...filtrerAvailableEmployees(availableEmployees, "M"));
+    employesChosen.push(...filtrerAvailableEmployees(availableEmployees, "N"));
+  }
+  if (salle === "Salle de sécurité") {
+    employesChosen = filtrerAvailableEmployees(availableEmployees, "AS");
+    employesChosen.push(...filtrerAvailableEmployees(availableEmployees, "M"));
+    employesChosen.push(...filtrerAvailableEmployees(availableEmployees, "N"));
+  }
+  if (salle === "Réception") {
+    employesChosen = filtrerAvailableEmployees(availableEmployees, "R");
+    employesChosen.push(...filtrerAvailableEmployees(availableEmployees, "M"));
+    employesChosen.push(...filtrerAvailableEmployees(availableEmployees, "N"));
+  }
+  if (salle === "Salle d'archives") {
+    employesChosen = filtrerAvailableEmployees(availableEmployees, "M");
+  }
+  if (salle === "Salle de conférence" || salle === "Salle du personnel" ) {
+    // Tous peuvent accéder
+    employesChosen = [...availableEmployees];
+  }
+}
+
+
+function filtrerAvailableEmployees(paravailableEmployees,role) {
+  
+}
+
+
 
 ajoutBtn.addEventListener("click", () => {
       formContainerAjout.classList.remove("hidden");
@@ -294,22 +329,22 @@ btnsAjout.forEach(btn => {
         })
 
     if(btn.classList.contains("conferenceAjout")){
-      fillEmployesChoose(employesAvailable, "Salle de conférence", 1);
+      remplirEmployesChoisis(employesAvailable, "Salle de conférence", 1);
     }
     if(btn.classList.contains("personnelAjout")){
-      fillEmployesChoose(employesAvailable, "Salle du personnel", 5);
+      remplirEmployesChoisis(employesAvailable, "Salle du personnel", 5);
     }
     if(btn.classList.contains("serverAjout")){
-      fillEmployesChoose(employesAvailable, "Salle des serveurs", 2);
+      remplirEmployesChoisis(employesAvailable, "Salle des serveurs", 2);
     }
     if(btn.classList.contains("securiteAjout")){
-      fillEmployesChoose(employesAvailable, "Salle de sécurité", 3);
+      remplirEmployesChoisis(employesAvailable, "Salle de sécurité", 3);
     }
     if(btn.classList.contains("recepcionAjout")){
-      fillEmployesChoose(employesAvailable, "Réception", 4);
+      remplirEmployesChoisis(employesAvailable, "Réception", 4);
     }
     if(btn.classList.contains("archiveAjout")){
-      fillEmployesChoose(employesAvailable, "Salle d'archives", 6);
+      remplirEmployesChoisis(employesAvailable, "Salle d'archives", 6);
     }
 });
 });
