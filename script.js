@@ -63,6 +63,9 @@ function detailsemploye(employee, experience) {
   });
 }
 
+
+
+// Fonction pour afficher un message d'erreur sous un input
 function afficherErreurs(inputElement, message) {
   const errorDiv = document.createElement("div");
   errorDiv.className = "error-message text-red-400 text-sm mt-1";
@@ -70,6 +73,13 @@ function afficherErreurs(inputElement, message) {
   
   inputElement.classList.add("border-red-500");
   inputElement.parentElement.append(errorDiv);
+}
+
+function clearAllErrors() {
+  document.querySelectorAll(".error-message").forEach(msg => msg.remove());
+  document.querySelectorAll("input, select, textarea").forEach(input => {
+    input.classList.remove("border-red-500");
+  });
 }
 
 
@@ -161,6 +171,7 @@ function fillemployee(employee) {
             </div>
             `;
 }
+
 
 function filexperiences(experience){
   experience.forEach((exp) => {
