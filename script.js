@@ -213,6 +213,11 @@ function filexperiences(experience){
 formContainerAjout.addEventListener("submit", (e) => {
   e.preventDefault();
   
+
+  // Validation du formulaire
+  if (!validateForm()) {
+    return;
+  }
   
   // Obtenir Les experiences Ajoutées
   let experiencedata = document.querySelectorAll(".experiencedata");
@@ -242,6 +247,7 @@ formContainerAjout.addEventListener("submit", (e) => {
   const employee = document.createElement("div");
 
   fillemployee(employee);
+  detailsemploye(employee, experience);
   employes.push(employe);
   employesContainer.append(employee);
   cacherFormulaire();
