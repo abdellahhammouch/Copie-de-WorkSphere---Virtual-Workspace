@@ -83,12 +83,12 @@ function fillemployee(employee) {
     "employe flex pl-3 gap-x-3 rounded-2xl border-emerald-500 border-2 cursor-pointer hover:bg-zinc-800 transition-all";
   employee.dataset.id = `${employe.id}`;
   employee.innerHTML = `
-            <div class="imageContainerProfil overflow-hidden mt-2 rounded-xl h-9 w-9">
+            <div class="imageContainerProfil overflow-hidden mt-2 rounded-xl h-9 w-[20%]">
             <img class="w-full h-full object-cover" src="${employe.url}" alt="${employe.nom}"/>
             </div>
-            <div class="infoEmploye mt-1">
-            <h5 class="font-extrabold text-zinc-500">${employe.nom}</h5>
-            <p class="roleEmploye font-bold text-zinc-500">${employe.role}</p>
+            <div class="infoEmploye mt-1 w-[75%] ">
+            <h5 class="font-extrabold max-w-[95%] truncate text-zinc-500">${employe.nom}</h5>
+            <p class="roleEmploye font-bold max-w-[95%] truncate text-zinc-500">${employe.role}</p>
             </div>
             `;
 } 
@@ -282,8 +282,8 @@ function fillEmployesChoose(availableEmployees, salle, box) {
                     <img class="w-full h-full object-cover" src="${empchosen.url}" alt="${empchosen.nom}"/>
                   </div>
                   <div class="infoEmploye mt-1">
-                    <h5 class="font-extrabold text-zinc-500">${empchosen.nom}</h5>
-                    <p class="roleEmploye font-bold text-zinc-500">${empchosen.role}</p>
+                    <h5 class="font-extrabold max-w-[95%] truncate text-zinc-500">${empchosen.nom}</h5>
+                    <p class="roleEmploye font-bold max-w-[95%] truncate text-zinc-500">${empchosen.role}</p>
                   </div>
               `;
       employesChoose.append(divEmp);
@@ -295,7 +295,7 @@ function fillEmployesChoose(availableEmployees, salle, box) {
         ajouterEmployerSalle(empchosen, divEmp, box);
         employesChooseContainer.classList.add("hidden");
       }else{
-        alert("La salle est pleine");
+        showMessageFullRoom();
       }
 
       })
@@ -315,13 +315,13 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
   empLocal.className = "employe flex w-28 pl-2 py-1 bg-zinc-900 gap-x-2 rounded-xl border-emerald-500 border-2 hover:scale-105 transition-all cursor-pointer";
   empLocal.dataset.id = empchosen.id;
   empLocal.innerHTML = `
-                    <div class="imageContainerProfi overflow-hidden rounded-lg h-8 w-8">
+                    <div class="imageContainerProfi overflow-hidden rounded-lg h-8 w-[30%]">
                       <img class="w-full h-full object-cover" src="${empchosen.url}" alt="${empchosen.nom}"/>
                     </div>
-                    <div class="infoEmploye flex-1 flex items-center justify-between">
-                      <div class="flex-1 min-w-0">
-                        <h5 class="text-xs font-bold text-zinc-400 truncate">${empchosen.nom}</h5>
-                        <p class="roleEmploye text-xs text-zinc-400">${empchosen.role}</p>
+                    <div class="infoEmploye w-[70%] flex items-center justify-between">
+                      <div class="w-[80%]">
+                        <h5 class="text-xs font-bold max-w-[95%] truncate text-zinc-400">${empchosen.nom}</h5>
+                        <p class="roleEmploye text-xs max-w-[95%] truncate text-zinc-400">${empchosen.role}</p>
                       </div>
                       <button class="annulEmp text-emerald-500 rounded-full w-5 h-5 flex items-center justify-center text-sm ml-1">×</button>
                     </div>
@@ -380,6 +380,21 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
       details.classList.add("hidden");
     })
   });
+}
+
+
+function showMessageFullRoom(){
+  const container = document.querySelector("#fullRoomContainer")
+
+  const fullRoom = document.createElement("div")
+  fullRoom.className = `fullRoom text-emerald-500 px-4 py-3 rounded-lg shadow-2xl bg-zinc-900 border border-emerald-500`;
+  fullRoom.textContent = "La salle est pleine";
+
+  container.appendChild(fullRoom);
+
+  setTimeout(() => {
+      fullRoom.remove();
+  }, 3000);
 }
 
 

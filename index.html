@@ -6,13 +6,14 @@
     <title>WorkSphere - Gestion du Personnel</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="output.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body class="relative bg-zinc-950">
     <main class="flex">
       <aside class="sidebarContainer w-[20%] h-screen rounded-2xl border-2 border-zinc-800">
         <div class="navbar h-[20%] flex flex-col p-4 overflow-hidden border-b-2 rounded-2xl border-zinc-800 gap-4 items-center bg-black">
-          <button class="ajouterBtn w-full bg-emerald-500 py-2 flex border-2 rounded-lg justify-center text-black font-bold hover:bg-emerald-600 transition-all">Ajouter un employé</button>
-          <h3 class="font-bold text-emerald-500">Employés non assignés</h3>
+          <button class="ajouterBtn w-[88%] h-[45%] bg-emerald-500 flex border-2 rounded-lg justify-center items-center text-black font-bold hover:bg-emerald-600 transition-all">Ajouter un employé</button>
+          <h3 class="font-bold h-[40%] text-emerald-500 ">Employés non assignés</h3>
         </div>
         <div class="employesContainer mx-1 h-[80%] overflow-y-scroll border-zinc-800 rounded-2xl border-2 mt-1 p-2" style="scrollbar-width: none">
           <!-- Les employés apparaîtront ici -->
@@ -21,22 +22,22 @@
       
       <section class="containerImage p-2 h-screen flex-1">
         <div class="imgContainer h-full">
-          <div class="boxes box1 flex flex-wrap justify-center items-center gap-2 border-2 border-emerald-500/30 rounded-lg p-2">
-            <button class="ajoutBtn conferenceAjout bg-emerald-500 rounded-md text-zinc-800 font-extrabold h-8 w-8 hover:bg-emerald-600 transition-all">+</button>
+          <div class="boxes box1 flex flex-wrap overflow-y-scroll justify-center items-center gap-2 border-2 border-emerald-500/30 rounded-lg p-2" style="scrollbar-width: none;">
+          <button class="ajoutBtn conferenceAjout bg-emerald-500 rounded-md text-zinc-800 font-extrabold h-8 w-8 hover:bg-emerald-600 transition-all">+</button>
           </div>
-          <div class="boxes box2 flex flex-wrap justify-center items-center gap-2 bg-red-600/30 border-2 border-red-500/50 rounded-lg p-2">
+          <div class="boxes box2 flex flex-wrap overflow-y-scroll justify-center items-center gap-2 bg-red-600/30 border-2 border-red-500/50 rounded-lg p-2" style="scrollbar-width: none;">
             <button class="ajoutBtn serverAjout bg-emerald-500 rounded-md text-zinc-800 font-extrabold h-8 w-8 hover:bg-emerald-600 transition-all">+</button>
           </div>
-          <div class="boxes box3 flex flex-wrap justify-center items-center gap-2 bg-red-600/30 border-2 border-red-500/50 rounded-lg p-2">
+          <div class="boxes box3 flex flex-wrap overflow-y-scroll justify-center items-center gap-2 bg-red-600/30 border-2 border-red-500/50 rounded-lg p-2" style="scrollbar-width: none;">
             <button class="ajoutBtn securiteAjout bg-emerald-500 rounded-md text-zinc-800 font-extrabold h-8 w-8 hover:bg-emerald-600 transition-all">+</button>
           </div>
-          <div class="boxes box4 flex flex-wrap justify-center items-center gap-2 bg-red-600/30 border-2 border-red-500/50 rounded-lg p-2">
+          <div class="boxes box4 flex flex-wrap overflow-y-scroll justify-center items-center gap-2 bg-red-600/30 border-2 border-red-500/50 rounded-lg p-2" style="scrollbar-width: none;">
             <button class="ajoutBtn recepcionAjout bg-emerald-500 rounded-md text-zinc-800 font-extrabold h-8 w-8 hover:bg-emerald-600 transition-all">+</button>
           </div>
-          <div class="boxes box5 flex flex-wrap justify-center items-center gap-2 border-2 border-emerald-500/30 rounded-lg p-2">
+          <div class="boxes box5 flex flex-wrap overflow-y-scroll justify-center items-center gap-2 border-2 border-emerald-500/30 rounded-lg p-2" style="scrollbar-width: none;">
             <button class="ajoutBtn personnelAjout bg-emerald-500 rounded-md text-zinc-800 font-extrabold h-8 w-8 hover:bg-emerald-600 transition-all">+</button>
           </div>
-          <div class="boxes box6 flex flex-wrap justify-center items-center gap-2 bg-red-600/30 border-2 border-red-500/50 rounded-lg p-2">
+          <div class="boxes box6 flex flex-wrap overflow-y-scroll justify-center items-center gap-2 bg-red-600/30 border-2 border-red-500/50 rounded-lg p-2" style="scrollbar-width: none;">
             <button class="ajoutBtn archiveAjout bg-emerald-500 rounded-md text-zinc-800 font-extrabold h-8 w-8 hover:bg-emerald-600 transition-all">+</button>
           </div>
         </div>
@@ -53,9 +54,10 @@
           <button id="suppEmpChoose" class="text-3xl text-emerald-500 cursor-pointer hover:text-emerald-400">×</button>
         </div>
         <div class="employesChoose overflow-y-scroll p-3" style="scrollbar-width: none;">
-          <!--Les employés éligibles apparaîtront ici-->
+          <!--Les employés éligibles seront ajoutés ici-->
         </div>
       </section>
+      <div id="fullRoomContainer" class="absolute z-50" style="left: 3%; bottom: 5%;"></div>
     </main>
 
 
