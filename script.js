@@ -100,7 +100,7 @@ function detailsemploye(employee, experience) {
     <p id="annulDetails" class="absolute top-4 right-6 text-4xl text-emerald-500 cursor-pointer hover:text-emerald-400">×</p>
     <div class="profilContainerDetails flex flex-col gap-3 items-center">
       <img src="${employe.url}" alt="${employe.nom}" class="h-28 w-28 rounded-full border-4 border-emerald-500 object-cover">
-      <p class="text-2xl font-bold text-emerald-500 mt-2">${employe.nom}</p>
+      <p class="text-2xl text-center font-bold text-emerald-500 mt-2">${employe.nom}</p>
       <p class="text-lg font-semibold text-zinc-400 bg-zinc-800 px-4 py-2 rounded-lg border border-zinc-700">${employe.role}</p>
       <p class="text-base text-zinc-300">${employe.email}</p>
       <p class="text-base text-zinc-300">${employe.telephone}</p>
@@ -234,7 +234,7 @@ function ajoutEmployeUnsigned(employee, emp) {
             <div class="imageContainerProfil overflow-hidden mt-2 rounded-xl h-9 w-9">
             <img class="w-full h-full object-cover" src="${emp.url}" alt="${emp.nom}"/>
             </div>
-            <div class="infoEmploye mt-1">
+            <div class="infoEmploye mt-1 flex-1">
             <h5 class="font-extrabold text-zinc-500">${emp.nom}</h5>
             <p class="roleEmploye font-bold text-zinc-500">${emp.role}</p>
             </div>
