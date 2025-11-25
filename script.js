@@ -23,7 +23,7 @@ let employe;
 
 
 
-
+// Fonction pour mettre à jour l'image 
 function previewImage() {
   const url = document.querySelector("#photoUrl").value;
   const preview = document.querySelector("#imagePreview");
@@ -39,7 +39,7 @@ function previewImage() {
   }
 }
 
-
+// Fonction pour cacher le formulaire
 function hideForm() {
   formContainerAjout.classList.add("hidden");
   let form = formContainerAjout.querySelector("form");
@@ -49,7 +49,7 @@ function hideForm() {
   clearAllErrors();
 }
 
-
+// Fonction pour ajouter une experience
 function addExperience() {
   let clone = experienceTemplate.content.cloneNode(true);
   let container = clone.querySelector("div");
@@ -59,7 +59,7 @@ function addExperience() {
   experiencesList.append(container);
 }
 
-
+// Fonction pour remplir les experiences
 function filexperiences(experience){
   experience.forEach((exp) => {
       const profilContainerDetails = document.querySelector(".profilContainerDetails");
@@ -77,7 +77,7 @@ function filexperiences(experience){
     });
 }
 
-
+// Fonction pour ajouter un employé
 function fillemployee(employee) {
   employee.className =
     "employe flex pl-3 gap-x-3 rounded-2xl border-emerald-500 border-2 cursor-pointer hover:bg-zinc-800 transition-all";
@@ -92,7 +92,7 @@ function fillemployee(employee) {
             </div>
             `;
 } 
-
+// Fonction pour afficher les détails d'un employé
 function detailsemploye(employee, experience) {
   employee.addEventListener("click", () => {
     details.classList.remove("hidden");
@@ -133,7 +133,7 @@ function clearAllErrors() {
   });
 }
 
-
+// Fonction pour valider le formulaire par REGEX
 function validateForm() {
   clearAllErrors();
   const nomInput = document.querySelector('input[name="nom"]');
@@ -197,7 +197,7 @@ function validateForm() {
   return isValid;
 }
 
-
+// Fonction pour filtrer les employé non-assignés selon les roles ayant accés au salle séléctionnée
 function filtrerAvailableEmployees(paravailableEmployees,role) {
   let avemployes= [];
   paravailableEmployees.forEach((avemp) => {
@@ -208,7 +208,7 @@ function filtrerAvailableEmployees(paravailableEmployees,role) {
   return avemployes;
 }
 
-
+// Fonction pour ajuster la couleur des salles
 function updateBoxColor(boxElement) {
   const employesInBox = boxElement.querySelectorAll(".employe");
   
@@ -226,7 +226,7 @@ function updateBoxColor(boxElement) {
   }
 }
 
-
+// Fonction d'un employe non-assignés au modal pour choisir les employés
 function ajoutEmployeUnsigned(employee, emp) {
   employee.className = "employe flex pl-3 gap-x-3 rounded-2xl border-emerald-500 border-2 cursor-pointer hover:bg-zinc-800 transition-all";
   employee.dataset.id = `${emp.id}`;
@@ -243,7 +243,7 @@ function ajoutEmployeUnsigned(employee, emp) {
   detailsemploye(employee, emp.experience);
 }
 
-
+// Fonction d'un employe non-assignés au modal pour choisir les employés
 function fillEmployesChoose(availableEmployees, salle, box) {
   employesChoose.innerHTML = '';
   let employesChosen = [];
@@ -337,7 +337,7 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
     }
   });
   
-  // Mettre à jour la couleur de la box
+  // Mettre à jour la couleur du box
   updateBoxColor(selectedbox);
   
   // Événement pour retirer l'employé de la zone
@@ -345,7 +345,7 @@ function ajouterEmployerSalle(empchosen, divEmp, boxNumber) {
     e.stopPropagation();
     empLocal.remove();
     
-    // Remettre l'employé dans unsigned
+    // Remettre l'employé dans side-bar comme employés non-assignés
     empchosen.localisation = "unsigned";
     
     // Recréer l'employé dans la sidebar

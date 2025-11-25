@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>WorkSphere - Gestion du Personnel</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="output.css" />
@@ -12,11 +12,10 @@
     <main class="flex">
       <aside class="sidebarContainer w-[20%] h-screen rounded-2xl border-2 border-zinc-800">
         <div class="navbar h-[20%] flex flex-col p-4 overflow-hidden border-b-2 rounded-2xl border-zinc-800 gap-4 items-center bg-black">
-          <button class="ajouterBtn w-[88%] h-[45%] bg-emerald-500 flex border-2 rounded-lg justify-center items-center text-black font-bold hover:bg-emerald-600 transition-all">Ajouter un employé</button>
-          <h3 class="font-bold h-[40%] text-emerald-500 ">Employés non assignés</h3>
+          <button class="ajouterBtn font-bold w-[88%] py-1 bg-emerald-500 flex border-2 rounded-lg justify-center items-center text-black hover:bg-emerald-600 transition-all">Ajouter un employé</button>
         </div>
         <div class="employesContainer mx-1 h-[80%] overflow-y-scroll border-zinc-800 rounded-2xl border-2 mt-1 p-2" style="scrollbar-width: none">
-          <!-- Les employés apparaîtront ici -->
+          <!-- Les employés apparaitront ici -->
         </div>
       </aside>
       
@@ -48,13 +47,13 @@
       </section>
       
       <!-- Modal de sélection d'employés -->
-      <section id="employesChooseContainer" class="absolute hidden flex-col overflow-hidden bg-zinc-900 border-2 border-emerald-500 rounded-lg shadow-2xl" style="width: 350px; max-height: 500px; left: 35%; top: 10%;">
+      <section id="employesChooseContainer" class="absolute hidden flex-col overflow-hidden overflow-y-scroll bg-zinc-900 border-2 border-emerald-500 rounded-lg shadow-2xl" style=" scrollbar-width: none; width: 350px; max-height: 500px; left: 35%; top: 10%;">
         <div class="flex justify-between items-center p-4 border-b-2 border-emerald-500 bg-zinc-950">
           <span class="text-emerald-500 font-bold text-lg">Sélectionner un employé</span>
           <button id="suppEmpChoose" class="text-3xl text-emerald-500 cursor-pointer hover:text-emerald-400">×</button>
         </div>
-        <div class="employesChoose overflow-y-scroll p-3" style="scrollbar-width: none;">
-          <!--Les employés éligibles seront ajoutés ici-->
+        <div class="employesChoose p-3">
+          <!--Les employés non-assignés seront ajoutés ici-->
         </div>
       </section>
       <div id="fullRoomContainer" class="absolute z-50" style="left: 3%; bottom: 5%;"></div>
