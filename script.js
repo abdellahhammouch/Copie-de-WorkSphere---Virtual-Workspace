@@ -151,10 +151,9 @@ function validateForm() {
   const telephone = telephoneInput.value.trim();
   const url = urlInput.value.trim();
   
-  const nomRegex = /^[a-zA-ZÀ-ÿ\s]{2,50}$/;
+  const nomRegex = /^[a-zA-Z\s]{5,20}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const telephoneRegex = /^\+?[0-9\s\-()]{10,20}$/;
-  // const telephoneRegex = /^\+?[0-9\s]{10}$/;
+  const telephoneRegex = /^\+?[0-9\s]{10}$/;
   const urlRegex = /^https?:\/\/.+\..+/;
   
   
