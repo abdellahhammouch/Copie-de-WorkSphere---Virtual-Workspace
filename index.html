@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkSphere - Gestion du Personnel</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="output.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="output.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body class="relative bg-zinc-950">
@@ -19,7 +19,7 @@
         </div>
       </aside>
       
-      <section class="containerImage p-2 h-screen flex-1">
+      <div class="containerImage p-2 h-screen flex-1">
         <div class="imgContainer h-full">
           <div class="boxes box1 flex flex-wrap overflow-y-scroll justify-center items-center gap-2 border-2 border-emerald-500/30 rounded-lg p-2" style="scrollbar-width: none;">
           <button class="ajoutBtn conferenceAjout bg-emerald-500 rounded-md text-zinc-800 font-extrabold h-8 w-8 hover:bg-emerald-600 transition-all">+</button>
@@ -40,14 +40,14 @@
             <button class="ajoutBtn archiveAjout bg-emerald-500 rounded-md text-zinc-800 font-extrabold h-8 w-8 hover:bg-emerald-600 transition-all">+</button>
           </div>
         </div>
-      </section>
+      </div>
       
       <!-- Modal de détails d'employé -->
-      <section id="details" class="absolute w-96 hidden p-8 bg-zinc-900 border-2 border-emerald-500 rounded-2xl overflow-y-scroll shadow-[0_20px_60px_rgba(16,185,129,0.3)]" style="scrollbar-width: none; height: 70%; left: 40%; top: 15%; transform: translateX(-50%);">
-      </section>
+      <div id="details" class="absolute w-96 hidden p-8 bg-zinc-900 border-2 border-emerald-500 rounded-2xl overflow-y-scroll shadow-[0_20px_60px_rgba(16,185,129,0.3)]" style="scrollbar-width: none; height: 70%; left: 40%; top: 15%; transform: translateX(-50%);">
+      </div>
       
       <!-- Modal de sélection d'employés -->
-      <section id="employesChooseContainer" class="absolute hidden flex-col overflow-hidden overflow-y-scroll bg-zinc-900 border-2 border-emerald-500 rounded-lg shadow-2xl" style=" scrollbar-width: none; width: 350px; max-height: 500px; left: 35%; top: 10%;">
+      <div id="employesChooseContainer" class="absolute hidden flex-col overflow-hidden overflow-y-scroll bg-zinc-900 border-2 border-emerald-500 rounded-lg shadow-2xl" style=" scrollbar-width: none; width: 350px; max-height: 500px; left: 35%; top: 10%;">
         <div class="flex justify-between items-center p-4 border-b-2 border-emerald-500 bg-zinc-950">
           <span class="text-emerald-500 font-bold text-lg">Sélectionner un employé</span>
           <button id="suppEmpChoose" class="text-3xl text-emerald-500 cursor-pointer hover:text-emerald-400">×</button>
@@ -55,7 +55,7 @@
         <div class="employesChoose p-3">
           <!--Les employés non-assignés seront ajoutés ici-->
         </div>
-      </section>
+      </div>
       <div id="fullRoomContainer" class="absolute z-50" style="left: 3%; bottom: 5%;"></div>
     </main>
 
@@ -69,12 +69,13 @@
           <div class="flex flex-col gap-6">
             <div class="">
               <label class="block text-sm text-zinc-300 font-medium mb-2">Nom complet</label>
-              <input name="nom" type="text" placeholder="Abdellah" required class="w-full rounded-lg text-zinc-200 bg-zinc-800 border-2 border-zinc-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 p-3 transition-all" />
+              <input name="nom" type="text" placeholder="Abdellah" required class="w-full rounded-lg text-zinc-200 bg-zinc-800 border-2 border-zinc-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 p-3 transition-all">
             </div>
 
             <div class="">
               <label class="block text-sm text-zinc-300 font-medium mb-2">Rôle</label>
               <select name="role" required class="w-full text-zinc-200 bg-zinc-800 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 p-3 transition-all">
+                <option class="text-zinc-400 bg-zinc-900" value="">-- Sélectionner un rôle --</option>
                 <option class="text-zinc-400 bg-zinc-900" value="R">Réceptionniste (R)</option>
                 <option class="text-zinc-400 bg-zinc-900" value="IT">Technicien IT (IT)</option>
                 <option class="text-zinc-400 bg-zinc-900" value="AS">Agent de sécurité (AS)</option>
@@ -86,7 +87,7 @@
 
             <div class="">
               <label class="block text-sm font-medium mb-2 text-zinc-300">Photo(URL)</label>
-              <input type="url" id="photoUrl" class="w-full text-zinc-200 bg-zinc-800 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-3 transition-all" placeholder="https://example.com/photo.jpg" name="url" oninput="previewImage()"/>
+              <input type="url" id="photoUrl" class="w-full text-zinc-200 bg-zinc-800 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-3 transition-all" placeholder="https://example.com/photo.jpg" name="url" oninput="previewImage()">
               <div id="imagePreview" class="mt-4 w-32 h-32 bg-zinc-950 border-2 border-zinc-700 rounded-full flex items-center justify-center overflow-hidden mx-auto">
                 <span class="text-sm text-zinc-400">Aucune image</span>
               </div>
@@ -94,12 +95,12 @@
 
             <div>
               <label class="block text-zinc-300 text-sm font-medium mb-2">Email</label>
-              <input name="email" type="email" placeholder="exemple@domaine.com" required class="w-full text-zinc-200 bg-zinc-800 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-3 transition-all" />
+              <input name="email" type="email" placeholder="exemple@domaine.com" required class="w-full text-zinc-200 bg-zinc-800 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-3 transition-all">
             </div>
 
             <div>
               <label class="block text-sm font-medium mb-2 text-zinc-300">Téléphone</label>
-              <input name="telephone" type="tel" placeholder="+212 6 12 34 56 78" required class="w-full text-zinc-200 bg-zinc-800 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-3 transition-all" />
+              <input name="telephone" type="tel" placeholder="+212 6 12 34 56 78" required class="w-full text-zinc-200 bg-zinc-800 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-3 transition-all">
             </div>
           </div>
 
@@ -127,22 +128,22 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label class="block text-zinc-400 text-sm font-medium mb-2">Poste</label>
-                    <input name="poste" type="text" class="w-full text-zinc-200 bg-zinc-900 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-2 transition-all" placeholder="Ex: Développeur Full Stack" />
+                    <input name="poste" type="text" class="w-full text-zinc-200 bg-zinc-900 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-2 transition-all" placeholder="Ex: Développeur Full Stack">
                   </div>
 
                   <div>
                     <label class="block text-sm text-zinc-400 font-medium mb-2">Entreprise</label>
-                    <input name="entreprise" type="text" class="w-full text-zinc-200 bg-zinc-900 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-2 transition-all" placeholder="Ex: Tech Corp" />
+                    <input name="entreprise" type="text" class="w-full text-zinc-200 bg-zinc-900 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-2 transition-all" placeholder="Ex: Tech Corp">
                   </div>
 
                   <div>
                     <label class="block text-zinc-400 text-sm font-medium mb-2">Date début</label>
-                    <input id="debut" name="debut" type="month" class="w-full text-zinc-200 bg-zinc-900 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-2 transition-all" />
+                    <input id="debut" name="debut" type="month" class="w-full text-zinc-200 bg-zinc-900 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-2 transition-all">
                   </div>
 
                   <div>
                     <label class="block text-zinc-400 text-sm font-medium mb-2">Date fin</label>
-                    <input id="fin" name="fin" type="month" class="w-full text-zinc-200 bg-zinc-900 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-2 transition-all" />
+                    <input id="fin" name="fin" type="month" class="w-full text-zinc-200 bg-zinc-900 rounded-lg border-2 border-zinc-700 focus:border-emerald-500 p-2 transition-all">
                   </div>
 
                   <div class="md:col-span-2">
